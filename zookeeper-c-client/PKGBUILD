@@ -2,12 +2,13 @@
 
 pkgname=zookeeper-c-client
 pkgver=3.4.3
-pkgrel=1
+pkgrel=2
 pkgdesc="The C-based client for connecting to Apache ZooKeeper servers."
 arch=('any')
 url="https://zookeeper.apache.org/"
 license=('APACHE')
-depends=('glibc')
+depends=('gcc')
+makedepends=('make')
 source=("http://apache.mirror.iweb.ca/zookeeper/zookeeper-$pkgver/zookeeper-$pkgver.tar.gz")
 md5sums=('e43b96df6e29cb43518d2fcd1867486c')
 
