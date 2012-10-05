@@ -1,0 +1,23 @@
+post_install() {
+  useradd -u 112 -g daemon -c "Gearman" -d /dev/null -s /bin/false gearman
+  chown -R gearman:daemon /var/lib/gearmand
+  chown -R gearman:daemon /var/log/gearmand
+}
+
+post_upgrade() {
+  if [[ "$(vercmp $2 1.1.1-1)" -lt 0 ]]
+  then
+    # Old versions < 1.1.1 used gearman group -- use daemon instead
+    /etc/rc.d/gearmand stop
+    usermod gearman -g daemon &> /dev/null
+    groupdel gearman
+    chown -R gearman:daemon /var/lib/gearmand
+    chown -R gearman:daemon /var/log/gearmand
+    chmod go-rwx /var/lib/gearmand
+  fi
+}
+
+pre_remove() {
+  /etc/rc.d/gearmand stop
+  userdel gearman
+}

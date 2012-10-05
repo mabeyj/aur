@@ -1,0 +1,39 @@
+# Maintainer: Jimmy Mabey <jimmymabey@gmail.com>
+# Contributor: Vadym Abramchuk <abramm@gmail.com>
+# Contributor: John Gerritse <reaphsharc@gmail.com>
+
+pkgname=gearman
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="A generic application framework to farm out work to other machines or processes that are better suited to do the work."
+arch=('any')
+url="http://gearman.org/"
+license=('BSD')
+depends=('boost>=1.39.0' 'libevent')
+makedepends=('make')
+optdepends=('libdrizzle: Drizzle support'
+            'libmemcached: memcached support'
+            'postgresql-libs: PostgreSQL support'
+            'sqlite: SQLite support'
+            'tokyocabinet: Tokyo Cabinet support')
+install=$pkgname.install
+source=(http://launchpad.net/${pkgname}d/1.2/$pkgver/+download/${pkgname}d-$pkgver.tar.gz ${pkgname}d.init ${pkgname}d.conf)
+md5sums=('b8854e5e9a4d93fbbcea82da1a31cdfb'
+         '3fc95102da8a47775f32ad8e4f2af027'
+         '2fa2b30ae7d005db9f8003e8decbb935')
+
+build() {
+  cd "$srcdir/${pkgname}d-$pkgver"
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd "$srcdir/${pkgname}d-$pkgver"
+  make DESTDIR="$pkgdir" install
+  install -Dm 755 $srcdir/gearmand.init $pkgdir/etc/rc.d/gearmand
+  install -Dm 644 $srcdir/gearmand.conf $pkgdir/etc/conf.d/gearmand
+  install -Dm 644 $srcdir/${pkgname}d-$pkgver/COPYING $pkgdir/usr/share/licenses/$pkgname/COPYING
+  install -dm 700 $pkgdir/var/lib/gearmand
+  install -dm 755 $pkgdir/var/log/gearmand
+}
