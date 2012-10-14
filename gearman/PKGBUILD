@@ -3,7 +3,7 @@
 # Contributor: John Gerritse <reaphsharc@gmail.com>
 
 pkgname=gearman
-pkgver=1.1.1
+pkgver=1.1.2
 pkgrel=1
 pkgdesc="A generic application framework to farm out work to other machines or processes that are better suited to do the work."
 arch=('any')
@@ -18,8 +18,8 @@ optdepends=('libdrizzle: Drizzle support'
             'tokyocabinet: Tokyo Cabinet support')
 install=$pkgname.install
 source=(http://launchpad.net/${pkgname}d/1.2/$pkgver/+download/${pkgname}d-$pkgver.tar.gz ${pkgname}d.init ${pkgname}d.conf)
-md5sums=('b8854e5e9a4d93fbbcea82da1a31cdfb'
-         '3fc95102da8a47775f32ad8e4f2af027'
+md5sums=('b611bb36da36efea2d68428ba9e871ad'
+         '91e7ea1faea3e21ddccff06a7089476b'
          '2fa2b30ae7d005db9f8003e8decbb935')
 
 build() {
