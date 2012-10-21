@@ -1,0 +1,12 @@
+[Unit]
+Description=Gearman job server
+Documentation=http://gearman.info
+After=network.target
+
+[Service]
+User=gearman
+EnvironmentFile=/etc/gearmand.conf
+ExecStart=/usr/sbin/gearmand -l /var/log/gearmand/gearmand.log $GEARMAN_OPTS
+
+[Install]
+WantedBy=multi-user.target

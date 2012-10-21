@@ -4,7 +4,7 @@
 
 pkgname=gearman
 pkgver=1.1.2
-pkgrel=1
+pkgrel=2
 pkgdesc="A generic application framework to farm out work to other machines or processes that are better suited to do the work."
 arch=('any')
 url="http://gearman.org/"
@@ -17,10 +17,12 @@ optdepends=('libdrizzle: Drizzle support'
             'sqlite: SQLite support'
             'tokyocabinet: Tokyo Cabinet support')
 install=$pkgname.install
-source=(http://launchpad.net/${pkgname}d/1.2/$pkgver/+download/${pkgname}d-$pkgver.tar.gz ${pkgname}d.init ${pkgname}d.conf)
+source=(http://launchpad.net/${pkgname}d/1.2/$pkgver/+download/${pkgname}d-$pkgver.tar.gz
+        ${pkgname}d.service
+        ${pkgname}d.conf)
 md5sums=('b611bb36da36efea2d68428ba9e871ad'
-         '91e7ea1faea3e21ddccff06a7089476b'
-         '2fa2b30ae7d005db9f8003e8decbb935')
+         'f4132663dafe9b3be056cb50a7d78d3f'
+         '91d27322c963e37be3ce17b80871d322')
 
 build() {
   cd "$srcdir/${pkgname}d-$pkgver"
@@ -31,9 +33,8 @@ build() {
 package() {
   cd "$srcdir/${pkgname}d-$pkgver"
   make DESTDIR="$pkgdir" install
-  install -Dm 755 $srcdir/gearmand.init $pkgdir/etc/rc.d/gearmand
-  install -Dm 644 $srcdir/gearmand.conf $pkgdir/etc/conf.d/gearmand
+  install -Dm 644 $srcdir/gearmand.conf $pkgdir/etc/gearmand.conf
   install -Dm 644 $srcdir/${pkgname}d-$pkgver/COPYING $pkgdir/usr/share/licenses/$pkgname/COPYING
-  install -dm 700 $pkgdir/var/lib/gearmand
+  install -Dm 644 $srcdir/gearmand.service $pkgdir/usr/lib/systemd/system/gearmand.service
   install -dm 755 $pkgdir/var/log/gearmand
 }

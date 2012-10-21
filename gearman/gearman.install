@@ -1,6 +1,9 @@
 post_install() {
-  useradd -u 112 -g daemon -c "Gearman" -d /dev/null -s /bin/false gearman
-  chown -R gearman:daemon /var/lib/gearmand
+  if ! getent passwd gearman > /dev/null
+  then
+    useradd -u 112 -g daemon -c "Gearman" -d /dev/null -s /bin/false gearman
+  fi
+
   chown -R gearman:daemon /var/log/gearmand
 }
 
@@ -11,13 +14,20 @@ post_upgrade() {
     /etc/rc.d/gearmand stop
     usermod gearman -g daemon &> /dev/null
     groupdel gearman
-    chown -R gearman:daemon /var/lib/gearmand
-    chown -R gearman:daemon /var/log/gearmand
     chmod go-rwx /var/lib/gearmand
   fi
+
+  if [[ "$(vercmp $2 1.1.2-2)" -lt 0 ]]
+  then
+    echo "Config has moved from /etc/conf.d/gearmand to /etc/gearmand.conf"
+  fi
+
+  post_install $1
 }
 
 pre_remove() {
-  /etc/rc.d/gearmand stop
-  userdel gearman
+  if getent passwd gearman > /dev/null
+  then
+    userdel gearman
+  fi
 }
