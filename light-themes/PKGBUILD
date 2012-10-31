@@ -1,0 +1,30 @@
+# Maintainer: Jimmy Mabey <jimmymabey@gmail.com>
+# Contributor: D. Can Celasun <dcelasun[at]gmail[dot]com>
+
+pkgname=light-themes
+pkgver=0.1.93
+pkgrel=1
+pkgdesc="Ubuntu 'light' themes, Ambiance and Radiance (GTK2 and GTK3)"
+arch=('any')
+url="https://launchpad.net/light-themes/"
+license=('CCPL')
+depends=('gtk-engine-murrine' 'ubuntu-mono' 'gtk3' 'gtk-engine-unico')
+source=(https://launchpad.net/ubuntu/raring/+source/$pkgname/$pkgver/+files/${pkgname}_$pkgver.tar.gz)
+md5sums=('57baa4b1ab33288e2f31454fe39be25c')
+
+build() {
+  cd "$srcdir/$pkgname-$pkgver"
+  sed -i -e "/shadow radius/d" "Ambiance/metacity-1/metacity-theme-1.xml"
+  sed -i -e "/shadow radius/d" "Radiance/metacity-1/metacity-theme-1.xml"
+  sed -i -e "/padding/d" "Ambiance/metacity-1/metacity-theme-1.xml"
+  sed -i -e "/padding/d" "Radiance/metacity-1/metacity-theme-1.xml"
+  sed -i -e "/trough/d" "Ambiance/metacity-1/metacity-theme-1.xml"
+  sed -i -e "/trough/d" "Radiance/metacity-1/metacity-theme-1.xml"
+}
+
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
+  install -d "$pkgdir/usr/share/themes"
+  cp -R Ambiance "$pkgdir/usr/share/themes"
+  cp -R Radiance "$pkgdir/usr/share/themes"
+}
