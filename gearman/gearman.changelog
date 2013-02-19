@@ -1,3 +1,7 @@
+1.1.5-1 (2013-02-18)
+* New upstream release
+* Use --log-file instead of -l
+
 1.1.4-1 (2013-01-10)
 * New upstream release
 * Add changelog

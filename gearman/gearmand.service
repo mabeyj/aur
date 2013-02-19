@@ -6,7 +6,7 @@ After=network.target
 [Service]
 User=gearman
 EnvironmentFile=/etc/gearmand.conf
-ExecStart=/usr/sbin/gearmand -l /var/log/gearmand/gearmand.log $GEARMAN_OPTS
+ExecStart=/usr/sbin/gearmand --log-file /var/log/gearmand/gearmand.log $GEARMAN_OPTS
 
 [Install]
 WantedBy=multi-user.target
