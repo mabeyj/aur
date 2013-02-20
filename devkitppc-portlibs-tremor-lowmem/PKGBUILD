@@ -1,0 +1,34 @@
+# Maintainer: Jimmy Mabey <jimmymabey@gmail.com>
+# Contributor: Aaron Lindsay <aaron@aaronlindsay.com>
+pkgname=devkitppc-portlibs-tremor-lowmem
+pkgver=20100725
+pkgrel=2
+pkgdesc="An integer-only, fully Ogg Vorbis compliant software decoder library"
+arch=('i686' 'x86_64')
+url="http://www.xiph.org/vorbis/"
+license=('BSD')
+depends=('devkitppc')
+makedepends=('automake' 'make')
+options=(!strip)
+changelog=$pkgname.changelog
+source=(http://downloads.sourceforge.net/sourceforge/devkitpro/tremor-lowmem-src.tar.bz2)
+md5sums=('6bd7ed7d6046df1033aba6693f54a592')
+
+build() {
+  cd "$srcdir/tremor-lowmem"
+
+  # AM_CONFIG_HEADER is obsolete
+  sed -i "s/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/" configure.in
+
+  source /etc/profile.d/devkitppc.sh
+  export CFLAGS="-g -O2 -L$DEVKITPRO/portlibs/ppc/lib -I$DEVKITPRO/portlibs/ppc/include"
+  ./autogen.sh --prefix="$DEVKITPRO/portlibs/ppc" --host=powerpc-eabi --disable-shared --enable-static
+  make
+}
+
+package() {
+  cd "$srcdir/tremor-lowmem"
+
+  make DESTDIR="$pkgdir/" install
+  install -D -m644 COPYING "$pkgdir/usr/share/licenses/$pkgname/COPYING"
+}

@@ -1,0 +1,4 @@
+20100725-2 (2013-02-19)
+* Patch to fix error in configure.in
+* Install license
+* Clean up PKGBUILD
