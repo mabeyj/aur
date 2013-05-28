@@ -1,0 +1,31 @@
+# Maintainer: Jimmy Mabey <jimmymabey@gmail.com>
+# Contributor: Alexsandr Pavlov <kidoz at mail dot ru>
+pkgname=ruby-kramdown
+pkgver=1.0.2
+pkgrel=1
+pkgdesc="Library for parsing and converting a superset of Markdown."
+arch=('any')
+url="http://kramdown.rubyforge.org"
+license=('MIT')
+depends=('ruby')
+makedepends=('rubygems')
+options=(!emptydirs)
+changelog=$pkgname.changelog
+source=(http://rubygems.org/downloads/kramdown-$pkgver.gem)
+noextract=(kramdown-${pkgver}.gem)
+md5sums=('e3ba96caa4a0d6f2d0416a398618cf95')
+
+build() {
+  cd "$srcdir"
+
+  local gemdir="$(ruby -rubygems -e'puts Gem.default_dir')"
+  gem install --no-user-install --ignore-dependencies -i "$srcdir$gemdir" -n "$srcdir/usr/bin" \
+      "kramdown-$pkgver.gem"
+}
+
+package() {
+  cd "$srcdir"
+
+  cp -R usr "$pkgdir"
+  install -D -m644 $(find -name COPYING) "$pkgdir/usr/share/licenses/$pkgname/COPYING"
+}
