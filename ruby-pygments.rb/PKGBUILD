@@ -1,0 +1,31 @@
+# Maintainer: Jimmy Mabey <jimmymabey@gmail.com>
+# Contributor: Tom Vincent <http://tlvince.com/contact>
+pkgname=ruby-pygments.rb
+pkgver=0.5.0
+pkgrel=1
+pkgdesc="A Ruby wrapper for the Python pygments syntax highlighter."
+arch=('any')
+url="https://github.com/tmm1/pygments.rb"
+license=('MIT')
+depends=('python2' 'ruby-posix-spawn>=0.3.6' 'ruby-yajl-ruby>=1.1.0')
+makedepends=('rubygems')
+options=(!emptydirs)
+changelog=$pkgname.changelog
+source=(http://rubygems.org/downloads/pygments.rb-$pkgver.gem)
+noextract=(pygments.rb-$pkgver.gem)
+md5sums=('f486c442a9e1120c98a8f71f849a421c')
+
+build() {
+  cd "$srcdir"
+
+  local gemdir="$(ruby -rubygems -e'puts Gem.default_dir')"
+  gem install --no-user-install --ignore-dependencies -i "$srcdir$gemdir" -n "$srcdir/usr/bin" \
+      "pygments.rb-$pkgver.gem"
+}
+
+package() {
+  cd "$srcdir"
+
+  cp -R usr "$pkgdir"
+  install -D -m644 $(find -path "*$pkgver/LICENSE") "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
