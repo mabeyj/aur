@@ -1,5 +1,6 @@
-*/pkg
-*/src
-*/*.tar.gz
-*/*.tar.xz
-*/*.tar.bz2
+pkg/
+src/
+*.tar.gz
+*.tar.xz
+*.tar.bz2
+*.gem
