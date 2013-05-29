@@ -1,0 +1,31 @@
+# Maintainer: Jimmy Mabey <jimmymabey@gmail.com>
+pkgname=ruby-directory_watcher-1.4
+pkgver=1.4.1
+pkgrel=1
+pkgdesc="Library for scanning a directory and generating a list of files. (1.4 version)"
+arch=('any')
+url="http://rubygems.org/gems/directory_watcher"
+license=('MIT')
+depends=('ruby')
+makedepends=('rubygems')
+options=(!emptydirs)
+changelog=$pkgname.changelog
+source=(http://rubygems.org/downloads/directory_watcher-$pkgver.gem)
+noextract=(directory_watcher-${pkgver}.gem)
+md5sums=('d8e721932dc12c6b566e0fce1c8a5a7b')
+
+build() {
+  cd "$srcdir"
+
+  local gemdir="$(ruby -rubygems -e'puts Gem.default_dir')"
+  gem install --no-user-install --ignore-dependencies -i "$srcdir$gemdir" -n "$srcdir/usr/bin" \
+      "directory_watcher-$pkgver.gem"
+}
+
+package() {
+  cd "$srcdir"
+
+  cp -R usr "$pkgdir"
+  mkdir -p "$pkgdir/usr/share/licenses/$pkgname"
+  tail --lines 21 $(find -name README.txt) > "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
