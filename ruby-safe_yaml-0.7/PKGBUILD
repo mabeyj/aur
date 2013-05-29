@@ -1,0 +1,30 @@
+# Maintainer: Jimmy Mabey <jimmymabey@gmail.com>
+pkgname=ruby-safe_yaml-0.7
+pkgver=0.7.1
+pkgrel=1
+pkgdesc="Parse YAML safely, without that pesky arbitrary object deserialization vulnerability. (0.7 version)"
+arch=('any')
+url="http://dtao.github.com/safe_yaml"
+license=('MIT')
+depends=('ruby')
+makedepends=('rubygems')
+options=(!emptydirs)
+changelog=$pkgname.changelog
+source=(http://rubygems.org/downloads/safe_yaml-$pkgver.gem)
+noextract=(safe_yaml-${pkgver}.gem)
+md5sums=('af7811b5235921f87a8b6d8b5b6e881c')
+
+build() {
+  cd "$srcdir"
+
+  local gemdir="$(ruby -rubygems -e'puts Gem.default_dir')"
+  gem install --no-user-install --ignore-dependencies -i "$srcdir$gemdir" -n "$srcdir/usr/bin" \
+      "safe_yaml-$pkgver.gem"
+}
+
+package() {
+  cd "$srcdir"
+
+  cp -R usr "$pkgdir"
+  install -D -m644 $(find -name LICENSE.txt) "$pkgdir/usr/share/licenses/$pkgname/LICENSE.txt"
+}
