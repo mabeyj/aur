@@ -1,0 +1,29 @@
+# Maintainer: Jimmy Mabey <jimmymabey@gmail.com>
+pkgname=ruby-maruku-0.5
+pkgver=0.5.9
+pkgrel=1
+pkgdesc="A Markdown interpreter in Ruby. (0.5 version)"
+arch=('any')
+url="https://github.com/bhollis/maruku"
+license=('GPL2')
+depends=('ruby-syntax>=1.0.0')
+makedepends=('rubygems')
+options=(!emptydirs)
+changelog=$pkgname.changelog
+source=(http://rubygems.org/downloads/maruku-$pkgver.gem)
+noextract=(maruku-${pkgver}.gem)
+md5sums=('49e3acc9f134144fc866fbfb73abb8c9')
+
+build() {
+  cd "$srcdir"
+
+  local gemdir="$(ruby -rubygems -e'puts Gem.default_dir')"
+  gem install --no-user-install --ignore-dependencies -i "$srcdir$gemdir" -n "$srcdir/usr/bin" \
+      "maruku-$pkgver.gem"
+}
+
+package() {
+  cd "$srcdir"
+
+  cp -R usr "$pkgdir"
+}
