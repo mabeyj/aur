@@ -2,25 +2,26 @@
 # Contributor: Vadym Abramchuk <abramm@gmail.com>
 # Contributor: John Gerritse <reaphsharc@gmail.com>
 pkgname=gearman
-pkgver=1.1.7
+pkgver=1.1.8
 pkgrel=1
 pkgdesc="A generic application framework to farm out work to other machines or processes that are better suited to do the work."
 arch=('i686' 'x86_64')
 url="http://gearman.org/"
 license=('BSD')
-depends=('boost>=1.39.0' 'libevent')
+depends=('boost>=1.39.0' 'gperf' 'libevent')
 makedepends=('make')
 optdepends=('libdrizzle: Drizzle support'
             'libmemcached: memcached support'
             'postgresql-libs: PostgreSQL support'
             'sqlite: SQLite support'
             'tokyocabinet: Tokyo Cabinet support')
+backup=(etc/gearmand.conf)
 install=$pkgname.install
 changelog=$pkgname.changelog
 source=(http://launchpad.net/${pkgname}d/1.2/$pkgver/+download/${pkgname}d-$pkgver.tar.gz
         ${pkgname}d.service
         ${pkgname}d.conf)
-md5sums=('b59e666cf202d012f984799cfe514eda'
+md5sums=('485f2c38825aeaa38514c5646325a4a2'
          '08d681ed3d693a168f91abd692f9d1bc'
          '91d27322c963e37be3ce17b80871d322')
 
