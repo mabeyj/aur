@@ -1,7 +1,7 @@
 # Maintainer: Jimmy Mabey <jimmymabey@gmail.com>
 # Contributor: oliparcol <oliparcol AT gmail DOT com>
 pkgname=ruby-jekyll
-pkgver=1.0.2
+pkgver=1.1.2
 pkgrel=1
 pkgdesc="A simple, blog aware, static site generator."
 arch=('any')
@@ -12,17 +12,17 @@ depends=('ruby-classifier>=1.3' 'ruby-classifier<1.4'
          'ruby-commander>=4.1.3' 'ruby-commander<4.2'
          'ruby-directory_watcher-1.4'
          'ruby-kramdown>=1.0.2' 'ruby-kramdown<1.1'
-         'ruby-liquid-2.3'
+         'ruby-liquid>=2.5.1'
          'ruby-maruku-0.5'
          'ruby-pygments.rb>=0.5' 'ruby-pygments.rb<0.6'
-         'ruby-redcloth>=4.2' 'ruby-redcloth<4.3'
+         'ruby-redcarpet-2.2'
          'ruby-safe_yaml-0.7')
 makedepends=('rubygems')
 options=(!emptydirs)
 changelog=$pkgname.changelog
 source=(http://rubygems.org/downloads/jekyll-$pkgver.gem)
 noextract=(jekyll-$pkgver.gem)
-md5sums=('2a0e73de8b2628e31912edeed64ada5c')
+md5sums=('7e9b850874fa63e42bc2a87f19019adb')
 
 build() {
   cd "$srcdir"
