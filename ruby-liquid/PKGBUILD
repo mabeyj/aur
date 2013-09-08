@@ -1,0 +1,30 @@
+# Maintainer: Jimmy Mabey <jimmymabey@gmail.com>
+pkgname=ruby-liquid
+pkgver=2.5.1
+pkgrel=1
+pkgdesc="A secure, non-evaling end user template engine with aesthetic markup."
+arch=('any')
+url="https://github.com/Shopify/liquid"
+license=('MIT')
+depends=('ruby')
+makedepends=('rubygems')
+options=(!emptydirs)
+changelog=$pkgname.changelog
+source=(http://rubygems.org/downloads/liquid-$pkgver.gem)
+noextract=(liquid-${pkgver}.gem)
+md5sums=('5a0855e83efbcabd8467004ce1d4cfb0')
+
+build() {
+  cd "$srcdir"
+
+  local gemdir="$(ruby -rubygems -e'puts Gem.default_dir')"
+  gem install --no-user-install --ignore-dependencies -i "$srcdir$gemdir" -n "$srcdir/usr/bin" \
+      "liquid-$pkgver.gem"
+}
+
+package() {
+  cd "$srcdir"
+
+  cp -R usr "$pkgdir"
+  install -D -m644 $(find -name MIT-LICENSE) "$pkgdir/usr/share/licenses/$pkgname/MIT-LICENSE"
+}
