@@ -1,15 +1,16 @@
 Custom AUR packages
 ===================
 
-| Name                                | Releases                               | Last updated | Inactive? |
-|-------------------------------------|----------------------------------------|--------------|-----------|
-| [`nodejs-handlebars`][nhb]          | [npm][nhb-npm], [GitHub][nhb-github]   | 2014-01-02   |           |
-| [`nodejs-karma`][nkar]              | [npm][nkar-npm], [GitHub][nkar-github] | 2013-12-30   |           |
-| [`nodejs-zipper`][nzip]             | [GitHub][nzip-github]                  | 2013-05-06   | ✓         |
-| [`ruby-knife-solo_data_bag`][rksdg] | [GitHub][rksdg-github]                 | 2014-05-22   |           |
-| [`python-amqplib`][pamq]            | [Google Code][pamq-gcode]              | 2011-09-29   | ✓         |
-| [`python-see`][psee]                | [GitHub][psee-github]                  | 2010-10-16   | ✓         |
-| [`zookeeper-c-client`][zoo]         | [Homepage][zoo-home]                   | 2012-11-18   |           |
+| Name                                | Releases                                     | Last updated | Inactive? |
+|-------------------------------------------|----------------------------------------|--------------|-----------|
+| [`nodejs-handlebars`][nhb]          | [npm][nhb-npm], [GitHub][nhb-github]         | 2014-01-02   |           |
+| [`nodejs-karma`][nkar]              | [npm][nkar-npm], [GitHub][nkar-github]       | 2013-12-30   |           |
+| [`nodejs-karma-cli`][nkarcli]       | [npm][nkarcli-npm], [GitHub][nkarcli-github] | 2014-03-11   |           |
+| [`nodejs-zipper`][nzip]             | [GitHub][nzip-github]                        | 2013-05-06   | ✓         |
+| [`ruby-knife-solo_data_bag`][rksdg] | [GitHub][rksdg-github]                       | 2014-05-22   |           |
+| [`python-amqplib`][pamq]            | [Google Code][pamq-gcode]                    | 2011-09-29   | ✓         |
+| [`python-see`][psee]                | [GitHub][psee-github]                        | 2010-10-16   | ✓         |
+| [`zookeeper-c-client`][zoo]         | [Homepage][zoo-home]                         | 2012-11-18   |           |
 
 [nhb]: https://aur.archlinux.org/packages/nodejs-handlebars/
 [nhb-npm]: https://npmjs.org/package/handlebars
@@ -18,6 +19,10 @@ Custom AUR packages
 [nkar]: https://aur.archlinux.org/packages/nodejs-karma/
 [nkar-npm]: https://npmjs.org/package/karma
 [nkar-github]: https://github.com/karma-runner/karma/releases
+
+[nkarcli]: https://aur.archlinux.org/packages/nodejs-karma-cli/
+[nkarcli-npm]: https://npmjs.org/package/karma-cli
+[nkarcli-github]: https://github.com/karma-runner/karma-cli/releases
 
 [nzip]: https://aur.archlinux.org/packages/nodejs-zipper/
 [nzip-github]: https://github.com/rubenv/zipper/releases
