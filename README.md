@@ -7,6 +7,7 @@ Custom AUR packages
 | [`nodejs-karma`][nkar]              | [npm][nkar-npm], [GitHub][nkar-github]       | 2013-12-30   |           |
 | [`nodejs-karma-cli`][nkarcli]       | [npm][nkarcli-npm], [GitHub][nkarcli-github] | 2014-03-11   |           |
 | [`nodejs-karma-jasmine`][nkarjas]   | [npm][nkarjas-npm], [GitHub][nkarjas-github] | 2014-03-13   |           |
+| [`nodejs-karma-mocha`][nkarmo]      | [npm][nkarmo-npm], [GitHub][nkarmo-github]   | 2014-03-13   |           |
 | [`nodejs-zipper`][nzip]             | [GitHub][nzip-github]                        | 2013-05-06   | ✓         |
 | [`ruby-knife-solo_data_bag`][rksdg] | [GitHub][rksdg-github]                       | 2014-05-22   |           |
 | [`python-amqplib`][pamq]            | [Google Code][pamq-gcode]                    | 2011-09-29   | ✓         |
@@ -28,6 +29,10 @@ Custom AUR packages
 [nkarjas]: https://aur.archlinux.org/packages/nodejs-karma-jasmine/
 [nkarjas-npm]: https://npmjs.org/package/karma-jasmine
 [nkarjas-github]: https://github.com/karma-runner/karma-jasmine/releases
+
+[nkarmo]: https://aur.archlinux.org/packages/nodejs-karma-mocha
+[nkarmo-npm]: https://npmjs.org/package/karma-mocha
+[nkarmo-github]: https://github.com/karma-runner/karma-mocha/releases
 
 [nzip]: https://aur.archlinux.org/packages/nodejs-zipper/
 [nzip-github]: https://github.com/rubenv/zipper/releases
