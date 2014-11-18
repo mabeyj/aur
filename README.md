@@ -2,8 +2,8 @@ Custom AUR packages
 ===================
 
 | Name                                | Releases                                     | Last updated | Inactive? |
-|-------------------------------------------|----------------------------------------|--------------|-----------|
-| [`nodejs-handlebars`][nhb]          | [npm][nhb-npm], [GitHub][nhb-github]         | 2014-01-02   |           |
+|-------------------------------------|----------------------------------------------|--------------|-----------|
+| [`nodejs-handlebars`][nhb]          | [npm][nhb-npm], [GitHub][nhb-github]         | 2014-09-01   |           |
 | [`nodejs-karma`][nkar]              | [npm][nkar-npm], [GitHub][nkar-github]       | 2013-12-30   |           |
 | [`nodejs-karma-cli`][nkarcli]       | [npm][nkarcli-npm], [GitHub][nkarcli-github] | 2014-03-11   |           |
 | [`nodejs-karma-jasmine`][nkarjas]   | [npm][nkarjas-npm], [GitHub][nkarjas-github] | 2014-03-13   |           |
